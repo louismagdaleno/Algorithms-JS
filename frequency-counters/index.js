@@ -42,3 +42,53 @@ console.log(same([1,2,3], [1,4,9]));
 console.log(same([1,2,3], [1,4,8]));
 console.log(same([2,4,9], [4,16,81]));
 console.log(same([1,2,3], []));
+
+// O(n) time because of constant loopup times on objects;
+function sameAgain(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+
+    // create 2 objects
+    const obj1 = new Map(), obj2 = new Map();
+
+    // loop over arr 1 and arr 2 and store numbers and frequencies into objects
+    for (let item of arr1) {
+        if (obj1.has(item)) {
+            obj1.set(item, obj1.get(item) + 1);
+        } else {
+            obj1.set(item, 1);
+        }
+    }
+   
+
+    for (let item of arr2) {
+        if (obj2.has(item)) {
+            obj2.set(item, obj2.get(item) + 1);
+        } else {
+            obj2.set(item, 1);
+        }
+    }
+  
+    // iterate over keys of arr 1 and check if value squared is in arr 2
+
+  
+    for (let key of obj1.keys()) {
+      
+        if (!obj2.get(key ** 2)) {
+           return false;
+        }
+
+        if (obj1.get(key) !== obj2.get(key ** 2)) {
+            return false;
+        }
+    }
+
+    return true;
+
+}
+
+console.log(sameAgain([1,2,3], [1,4,9]));
+console.log(sameAgain([1,2,3], [1,4,8]));
+console.log(sameAgain([2,4,9], [4,16,81]));
+console.log(sameAgain([1,2,3], []));
