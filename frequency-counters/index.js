@@ -92,3 +92,41 @@ console.log(sameAgain([1,2,3], [1,4,9]));
 console.log(sameAgain([1,2,3], [1,4,8]));
 console.log(sameAgain([2,4,9], [4,16,81]));
 console.log(sameAgain([1,2,3], []));
+
+// Are There Duplicates?
+
+// Implement a function called areThereDuplicates which
+// accepts a variable number of arguments, and checks whether
+// there are any duplicates among the arguments passed in. You can solve this using the frequency
+// counter pattern OR the multiple pointers pattern
+
+// use rest operator to take in a variable number of arguments
+function areThereDuplicates(...args) {
+    // spread the args into an array
+    let temp = [...args];
+    
+    // create a Map to hold values : frequencies
+    let myMap = new Map();
+    // iterate over temp array
+    for (let i = 0; i < temp.length; i++) {
+        // if the map already has the value at the current index, we are done
+        // return true, because the args have  duplicate values
+        if (myMap.has(temp[i])) {
+         return true;
+           
+        } 
+        // if the Map doesn't have the value, add an entry
+        else {
+            myMap.set(temp[i], 1);
+        }
+       
+     
+    }
+    // if we have reached this point, no duplicates were found
+    // and we return false
+    return false; 
+  }
+  
+  console.log(areThereDuplicates(1,2,3)); // false
+  console.log(areThereDuplicates(1,2,2)); // true
+  console.log(areThereDuplicates('a', 'b', 'c', 'a')); // true

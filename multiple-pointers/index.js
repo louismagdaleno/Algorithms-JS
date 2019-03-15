@@ -10,7 +10,7 @@ function sumZero(arr) {
     let tail = arr.length - 1;
 
     // iterate over array
-    while (head !== tail) {
+    while (head < tail) {
         // get the sum of the head and tail elements at each iteration
         let sum = arr[head] + arr[tail];
         // if the sum of these two is 0, we are done. return the pair
